@@ -1,0 +1,70 @@
+# Secure caching and compression for Aruba hosting
+
+# Enable compression (Brotli if available, fallback to Deflate)
+<IfModule mod_brotli.c>
+  BrotliCompressionQuality 5
+  AddOutputFilterByType BROTLI_COMPRESS text/plain text/html text/xml text/css text/javascript application/javascript application/x-javascript application/json image/svg+xml application/manifest+json
+</IfModule>
+
+<IfModule mod_deflate.c>
+  AddOutputFilterByType DEFLATE text/plain text/html text/xml text/css text/javascript application/javascript application/x-javascript application/json image/svg+xml application/manifest+json
+  <IfModule mod_setenvif.c>
+    BrowserMatch ^Mozilla/4 gzip-only-text/html
+    BrowserMatch ^Mozilla/4\.0[678] no-gzip
+    BrowserMatch \bMSIE !no-gzip !gzip-only-text/html
+  </IfModule>
+</IfModule>
+
+# Cache static assets aggressively
+<IfModule mod_expires.c>
+  ExpiresActive On
+  # Images
+  ExpiresByType image/avif  "access plus 12 months"
+  ExpiresByType image/webp  "access plus 12 months"
+  ExpiresByType image/jpeg  "access plus 12 months"
+  ExpiresByType image/png   "access plus 12 months"
+  ExpiresByType image/gif   "access plus 12 months"
+  ExpiresByType image/svg+xml "access plus 12 months"
+  ExpiresByType image/x-icon "access plus 12 months"
+  # Fonts
+  ExpiresByType font/ttf    "access plus 12 months"
+  ExpiresByType font/otf    "access plus 12 months"
+  ExpiresByType font/woff   "access plus 12 months"
+  ExpiresByType font/woff2  "access plus 12 months"
+  # Static
+  ExpiresByType text/css    "access plus 6 months"
+  ExpiresByType application/javascript "access plus 6 months"
+  ExpiresByType application/json "access plus 1 month"
+  ExpiresByType application/manifest+json "access plus 1 month"
+  # HTML short cache
+  ExpiresByType text/html   "access plus 1 hour"
+</IfModule>
+
+# ETag / Cache headers
+<IfModule mod_headers.c>
+  Header unset ETag
+  FileETag None
+  <FilesMatch "\.(ico|jpg|jpeg|png|gif|webp|avif|svg|css|js|woff2?)$">
+    Header set Cache-Control "public, max-age=31536000, immutable"
+  </FilesMatch>
+  <FilesMatch "\.(html)$">
+    Header set Cache-Control "public, max-age=3600, must-revalidate"
+  </FilesMatch>
+</IfModule>
+
+# Security headers (safe defaults)
+<IfModule mod_headers.c>
+  Header always set X-Content-Type-Options "nosniff"
+  Header always set Referrer-Policy "strict-origin-when-cross-origin"
+  Header always set X-Frame-Options "SAMEORIGIN"
+  Header always set X-XSS-Protection "1; mode=block"
+  Header set Permissions-Policy "geolocation=(), camera=(), microphone=()"
+</IfModule>
+
+# Gzip/Brotli for SVG with correct MIME
+AddType image/svg+xml .svg .svgz
+AddEncoding gzip .svgz
+
+# Default DirectoryIndex
+DirectoryIndex index.html
+

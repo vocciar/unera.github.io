@@ -1,0 +1,467 @@
+<!doctype html>
+<html lang="it">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Dashboard Moderazione · UniOn</title>
+    <meta name="description" content="Pannello riservato ai moderatori UniOn per gestire ban, segnalazioni e richieste universitarie.">
+    <link rel="preload" href="assets/css/style.css" as="style">
+    <link rel="stylesheet" href="assets/css/style.css">
+    <style>
+      body {
+        min-height: 100vh;
+        background: linear-gradient(180deg,#050812,#0b1220);
+        color: #e5e7eb;
+        margin:0;
+        font-family: system-ui,-apple-system,Segoe UI,Roboto,Inter,Ubuntu,sans-serif;
+        display:flex;
+        flex-direction:column;
+      }
+      .admin-header, .admin-footer {
+        padding: 16px 32px;
+        display:flex;
+        align-items:center;
+        justify-content:space-between;
+        background: rgba(7,11,22,0.9);
+        border-bottom:1px solid rgba(255,255,255,0.08);
+      }
+      .admin-header .brand, .admin-footer span {
+        font-weight:700;
+      }
+      .admin-nav a {
+        color:#9ca3af;
+        text-decoration:none;
+        margin-left:16px;
+      }
+      main {
+        flex:1;
+        padding:32px;
+      }
+      .welcome-panel {
+        max-width:1040px;
+        margin:0 auto 30px;
+        background:rgba(15,23,42,0.8);
+        border:1px solid rgba(255,255,255,0.06);
+        border-radius:18px;
+        padding:28px;
+        box-shadow:0 25px 50px rgba(0,0,0,0.45);
+      }
+      .welcome-panel h1 {
+        margin:0 0 8px;
+        font-size:clamp(26px,3vw,34px);
+      }
+      .welcome-panel p {
+        margin:0 0 18px;
+        color:rgba(226,232,240,0.76);
+      }
+      .welcome-panel .actions {
+        display:flex;
+        gap:12px;
+        flex-wrap:wrap;
+      }
+      .button, button {
+        border-radius:12px;
+        border:none;
+        padding:12px 18px;
+        cursor:pointer;
+        font-weight:600;
+        transition:.2s;
+      }
+      .button-primary {
+        background:linear-gradient(135deg,#4f46e5,#22d3ee);
+        color:#060b18;
+      }
+      .button-ghost {
+        background:rgba(255,255,255,0.1);
+        color:#e5e7eb;
+        border:1px solid rgba(255,255,255,0.2);
+      }
+      .button:disabled {
+        opacity:.55;
+        cursor:not-allowed;
+      }
+      #admin-dashboard-status {
+        margin:18px auto 0;
+        max-width:1040px;
+        text-align:center;
+        min-height:24px;
+      }
+      .stats-grid, .admin-card-grid {
+        max-width:1040px;
+        margin:20px auto 0;
+        display:grid;
+        grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+        gap:16px;
+      }
+      .stat-card, .admin-card {
+        background:rgba(255,255,255,0.04);
+        border:1px solid rgba(255,255,255,0.08);
+        border-radius:14px;
+        padding:20px;
+        min-height:120px;
+      }
+      .stat-card span {
+        font-size:32px;
+        font-weight:700;
+        display:block;
+        margin-bottom:6px;
+      }
+      .admin-card h3 {
+        margin:0 0 8px;
+        font-size:18px;
+      }
+      .admin-card p {
+        margin:0;
+        color:rgba(226,232,240,0.7);
+      }
+      .admin-card footer {
+        margin-top:12px;
+      }
+      .admin-card footer button {
+        width:100%;
+      }
+      .divider {
+        height:1px;
+        background:rgba(255,255,255,0.08);
+        margin:32px auto;
+        max-width:1040px;
+      }
+      .notes {
+        font-size:13px;
+        color:rgba(226,232,240,0.6);
+        text-align:center;
+        margin-top:18px;
+      }
+      .section-filter {
+        display:flex;
+        gap:12px;
+        align-items:center;
+        flex-wrap:wrap;
+        margin:0;
+      }
+      .section-filter label {
+        font-size:12px;
+        color:rgba(226,232,240,0.75);
+        display:flex;
+        flex-direction:column;
+        gap:4px;
+      }
+      .section-filter select,
+      .section-filter input {
+        border-radius:10px;
+        border:1px solid rgba(255,255,255,0.12);
+        background:rgba(2,6,23,0.6);
+        color:#fff;
+        padding:6px 10px;
+        font-size:14px;
+        min-width:120px;
+      }
+      .data-section {
+        max-width:1100px;
+        margin:32px auto 0;
+        background:rgba(15,23,42,0.85);
+        border:1px solid rgba(255,255,255,0.06);
+        border-radius:16px;
+        padding:24px;
+        box-shadow:0 20px 40px rgba(0,0,0,0.4);
+      }
+      .section-header {
+        display:flex;
+        justify-content:space-between;
+        align-items:flex-start;
+        gap:16px;
+        flex-wrap:wrap;
+        margin-bottom:18px;
+      }
+      .section-header h2 {
+        margin:0 0 6px;
+        font-size:22px;
+      }
+      .section-actions {
+        display:flex;
+        gap:10px;
+        align-items:center;
+      }
+      .table-wrapper {
+        overflow-x:auto;
+        border:1px solid rgba(255,255,255,0.08);
+        border-radius:12px;
+        background:rgba(0,0,0,0.15);
+      }
+      #reports-table {
+        width:100%;
+        border-collapse:collapse;
+      }
+      #reports-table th,
+      #reports-table td {
+        padding:12px 14px;
+        text-align:left;
+        border-bottom:1px solid rgba(255,255,255,0.08);
+        font-size:14px;
+      }
+      #reports-table thead th {
+        font-size:13px;
+        letter-spacing:.05em;
+        text-transform:uppercase;
+        color:rgba(226,232,240,0.6);
+      }
+      #reports-table tbody tr:last-child td {
+        border-bottom:none;
+      }
+      #reports-table tbody td:nth-child(1) {
+        font-family:Segoe UI,system-ui;
+        font-size:12px;
+        color:rgba(226,232,240,0.75);
+      }
+      .empty-state {
+        text-align:center;
+        padding:22px;
+        color:rgba(226,232,240,0.65);
+      }
+      .reports-actions button {
+        margin-right:6px;
+      }
+      @media (max-width:640px){
+        .admin-header, .admin-footer {
+          flex-direction:column;
+          gap:8px;
+        }
+        .welcome-panel {
+          padding:22px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header class="admin-header">
+      <div class="brand">UniOn Moderazione</div>
+      <div class="admin-nav">
+        <a href="index.html" rel="nofollow">Landing</a>
+        <a href="admin.html" rel="nofollow">Logout/login</a>
+      </div>
+    </header>
+    <main>
+      <section id="admin-dashboard" data-supabase-url="https://fgqntkzphufwpmuuoapv.supabase.co" data-supabase-key="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImZncW50a3pwaHVmd3BtdXVvYXB2Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTY0ODA4OTUsImV4cCI6MjA3MjA1Njg5NX0.xBBBox755TfRZhxKDQDRpmMZ6P9xwkJiMU6W12M4Xr8">
+        <div class="welcome-panel">
+          <h1>Dashboard moderazione</h1>
+          <p>Qui vengono riassunti gli indicatori principali per gestire ban, segnalazioni e nuove università. Continua con la procedura dopo l'autenticazione.</p>
+          <div class="actions">
+            <button id="admin-dashboard-refresh" class="button button-primary" type="button">Aggiorna conteggi</button>
+            <button id="admin-dashboard-logout" class="button button-ghost" type="button">Esci</button>
+          </div>
+        </div>
+        <div id="admin-dashboard-status" role="status" aria-live="polite"></div>
+        <div class="stats-grid" aria-live="polite">
+          <article class="stat-card">
+            <span data-stat="bans">—</span>
+            <p>Bans attivi</p>
+          </article>
+          <article class="stat-card">
+            <span data-stat="reports">—</span>
+            <p>Segnalazioni aperte</p>
+          </article>
+          <article class="stat-card">
+            <span data-stat="universities">—</span>
+            <p>Richieste universitarie</p>
+          </article>
+        </div>
+        <div class="divider"></div>
+        <div class="admin-card-grid">
+          <article class="admin-card">
+            <h3>Ban e sospensioni</h3>
+            <p>Gestisci utenti sospetti, invia warning o sospendi account fino al completamento delle indagini.</p>
+            <footer><a class="button button-primary" href="#bans-section">Apri gestione ban</a></footer>
+          </article>
+          <article class="admin-card">
+            <h3>Segnalazioni</h3>
+            <p>Controlla i report in sospeso, assegna priorità e chiudi quelli risolti.</p>
+            <footer><a class="button button-primary" href="#reports-section">Apri segnalazioni</a></footer>
+          </article>
+          <article class="admin-card">
+            <h3>Università</h3>
+            <p>Approva nuove domande, verifica i documenti e abilita i campus alla piattaforma.</p>
+            <footer><a class="button button-primary" href="#universities-section">Gestisci università</a></footer>
+          </article>
+        </div>
+        <section id="reports-section" class="data-section" aria-labelledby="reports-title">
+          <header class="section-header">
+            <div>
+              <h2 id="reports-title">Segnalazioni recenti</h2>
+              <p class="notes">Riepilogo delle segnalazioni in stato <em>pending</em> o <em>under_review</em>. Usa i controlli per cambiare stato o chiudere il caso.</p>
+            </div>
+            <div class="section-actions">
+              <form id="reports-filter-form" class="section-filter" aria-label="Filtri segnalazioni">
+                <label>
+                  Stato
+                  <select name="status">
+                    <option value="pending">Pending</option>
+                    <option value="under_review">Under review</option>
+                    <option value="resolved">Resolved</option>
+                    <option value="dismissed">Dismissed</option>
+                    <option value="all">Tutti</option>
+                  </select>
+                </label>
+                <label>
+                  Categoria
+                  <select name="category">
+                    <option value="">Tutte</option>
+                    <option value="spam">Spam</option>
+                    <option value="harassment">Harassment</option>
+                    <option value="fake_profile">Fake profile</option>
+                    <option value="inappropriate_content">Contenuto inappropriato</option>
+                    <option value="other">Altro</option>
+                  </select>
+                </label>
+                <label>
+                  Ricerca
+                  <input type="search" name="search" placeholder="Email o ID">
+                </label>
+              </form>
+              <button id="reports-refresh" class="button button-primary" type="button">Aggiorna segnalazioni</button>
+            </div>
+          </header>
+          <div class="table-wrapper">
+            <table id="reports-table">
+              <thead>
+                <tr>
+                  <th>ID</th>
+                  <th>Segnalante</th>
+                  <th>Segnalato</th>
+                  <th>Categoria</th>
+                  <th>Stato</th>
+                  <th>Data</th>
+                  <th>Azioni</th>
+                </tr>
+              </thead>
+              <tbody id="reports-table-body">
+                <tr>
+                  <td colspan="7" class="empty-state">Nessuna segnalazione disponibile.</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <p id="reports-action-status" class="notes" aria-live="polite"></p>
+        </section>
+        <section id="bans-section" class="data-section" aria-labelledby="bans-title">
+          <header class="section-header">
+            <div>
+              <h2 id="bans-title">Ban e sospensioni</h2>
+              <p class="notes">Visualizziamo le azioni sulla moderazione ancora attive. Puoi revocare o filtrare per tipo.</p>
+            </div>
+            <div class="section-actions">
+              <form id="bans-filter-form" class="section-filter" aria-label="Filtri ban">
+                <label>
+                  Tipo
+                  <select name="action_type">
+                    <option value="">Tutti</option>
+                    <option value="warning">Warning</option>
+                    <option value="temp_suspend">Temp suspend</option>
+                    <option value="permanent_ban">Ban permanente</option>
+                  </select>
+                </label>
+                <label>
+                  Scadenza prima di
+                  <input type="date" name="expires_before">
+                </label>
+              </form>
+              <button id="bans-refresh" class="button button-primary" type="button">Aggiorna ban</button>
+            </div>
+          </header>
+        <section class="data-section" aria-labelledby="bans-title">
+          <header class="section-header">
+            <div>
+              <h2 id="bans-title">Ban e sospensioni</h2>
+              <p class="notes">Visualizziamo le azioni sulla moderazione ancora attive. Puoi revocare un ban oppure indicare una nuova scadenza.</p>
+            </div>
+            <div class="section-actions">
+              <button id="bans-refresh" class="button button-primary" type="button">Aggiorna ban</button>
+            </div>
+          </header>
+          <div class="table-wrapper">
+            <table id="bans-table">
+              <thead>
+                <tr>
+                  <th>ID</th>
+                  <th>Utente</th>
+                  <th>Tipo</th>
+                  <th>Motivo</th>
+                  <th>Scadenza</th>
+                  <th>Creato il</th>
+                  <th>Azioni</th>
+                </tr>
+              </thead>
+              <tbody id="bans-table-body">
+                <tr>
+                  <td colspan="7" class="empty-state">Nessun ban attivo al momento.</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <p id="bans-action-status" class="notes" aria-live="polite"></p>
+        </section>
+        <section id="universities-section" class="data-section" aria-labelledby="universities-title">
+          <header class="section-header">
+            <div>
+              <h2 id="universities-title">Richieste universitarie</h2>
+              <p class="notes">Gestisce le proposte di nuovi partner. Puoi approvare, rifiutare o richiedere info.</p>
+            </div>
+            <div class="section-actions">
+              <form id="universities-filter-form" class="section-filter" aria-label="Filtri università">
+                <label>
+                  Stato
+                  <select name="status">
+                    <option value="pending">Pending</option>
+                    <option value="approved">Approved</option>
+                    <option value="rejected">Rejected</option>
+                    <option value="all">Tutti</option>
+                  </select>
+                </label>
+                <label>
+                  Ricerca dominio
+                  <input type="search" name="domain" placeholder="es. uni.edu">
+                </label>
+              </form>
+              <button id="universities-refresh" class="button button-primary" type="button">Aggiorna richieste</button>
+            </div>
+          </header>
+        <section class="data-section" aria-labelledby="universities-title">
+          <header class="section-header">
+            <div>
+              <h2 id="universities-title">Richieste universitarie</h2>
+              <p class="notes">Gestisce le proposte di nuovi partner. Puoi approvare, rifiutare o richiedere informazioni.</p>
+            </div>
+            <div class="section-actions">
+              <button id="universities-refresh" class="button button-primary" type="button">Aggiorna richieste</button>
+            </div>
+          </header>
+          <div class="table-wrapper">
+            <table id="universities-table">
+              <thead>
+                <tr>
+                  <th>ID</th>
+                  <th>Nome proposto</th>
+                  <th>Dominio</th>
+                  <th>Email di contatto</th>
+                  <th>Stato</th>
+                  <th>Richieste note</th>
+                  <th>Azioni</th>
+                </tr>
+              </thead>
+              <tbody id="universities-table-body">
+                <tr>
+                  <td colspan="7" class="empty-state">Nessuna richiesta in sospeso.</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <p id="universities-action-status" class="notes" aria-live="polite"></p>
+        </section>
+      </section>
+    </main>
+    <footer class="admin-footer">
+      <span>© UniOn Moderazione</span>
+    </footer>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
+    <script src="assets/js/admin-dashboard.js" defer></script>
+  </body>
+</html>

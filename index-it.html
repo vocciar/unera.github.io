@@ -3,11 +3,10 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>UniOn – Connect, discover and meet. The app for exchange students</title>
-    <meta name="description" content="UniOn helps you connect with exchange students near you, discover events and make new friends. Available on iOS and Android.">
+    <title>UniOn – Connetti, scopri e incontra. L'app per studenti Erasmus</title>
+    <meta name="description" content="UniOn ti aiuta a connetterti con studenti Erasmus vicino a te, scoprire eventi e creare nuove amicizie. Scarica l'app su iOS e Android.">
 
-    <!-- Primary SEO -->
-    <link rel="canonical" href="/">
+    <link rel="canonical" href="/index-it.html">
     <link rel="alternate" href="/index-it.html" hreflang="it">
     <link rel="alternate" href="/" hreflang="en">
     <link rel="alternate" href="/" hreflang="x-default">
@@ -15,10 +14,10 @@
 
     <!-- Open Graph -->
     <meta property="og:type" content="website">
-    <meta property="og:locale" content="en_US">
-    <meta property="og:title" content="UniOn – Connect, discover and meet">
-    <meta property="og:description" content="The app for exchange students: community, events and connections.">
-    <meta property="og:url" content="/">
+    <meta property="og:locale" content="it_IT">
+    <meta property="og:title" content="UniOn – Connetti, scopri e incontra">
+    <meta property="og:description" content="L'app per studenti Erasmus: community, eventi e connessioni.">
+    <meta property="og:url" content="/index-it.html">
     <meta property="og:site_name" content="UniOn">
     <meta property="og:image" content="../assets/images/splash-icon.png">
     <meta property="og:image:alt" content="UniOn – schermata anteprima app">
@@ -36,22 +35,13 @@
 
     <!-- Icons & Manifest -->
     <link rel="icon" type="image/png" sizes="32x32" href="../assets/images/favicon.png">
-    <!-- Fallback .ico file placed locally as placeholder; replace in production -->
     <link rel="icon" type="image/x-icon" href="favicon.ico">
     <link rel="apple-touch-icon" href="../assets/images/icon.png">
     <link rel="manifest" href="site.webmanifest">
 
-    <!-- Critical CSS (minimal) -->
+    <!-- Critical CSS minimal same as index -->
     <style>
-      :root{
-        --color-bg:#0F172A;/* slate-900 */
-        --color-surface:#0B1220;
-        --color-text:#E5E7EB;/* gray-200 */
-        --color-muted:#9CA3AF;/* gray-400 */
-        --color-accent:#4F46E5;/* indigo-600 */
-        --color-accent-2:#22D3EE;/* cyan-400 */
-        --radius:14px;--radius-sm:10px;--shadow:0 10px 30px rgba(0,0,0,.25);
-      }
+      :root{--color-bg:#0F172A;--color-surface:#0B1220;--color-text:#E5E7EB;--color-muted:#9CA3AF;--color-accent:#4F46E5;--color-accent-2:#22D3EE;--radius:14px;--radius-sm:10px;--shadow:0 10px 30px rgba(0,0,0,.25)}
       *{box-sizing:border-box}
       html,body{height:100%}
       body{margin:0;font-family:system-ui,-apple-system,Segoe UI,Roboto,Inter,Ubuntu,Arial,sans-serif;background:linear-gradient(180deg,var(--color-bg),#0A0F1C);color:var(--color-text);-webkit-font-smoothing:antialiased}
@@ -71,7 +61,6 @@
       .cta a:hover{transform:translateY(-2px);background:#0F172A}
       .hero__media{justify-self:center}
       .phone{width:min(360px,85vw);filter:drop-shadow(var(--shadow))}
-
       .section{padding:40px 0}
       .section__title{font-size:clamp(22px,4vw,30px);margin:0 0 18px}
       .features{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px}
@@ -79,77 +68,48 @@
       .card:hover{transform:translateY(-3px)}
       .card__icon{width:36px;height:36px;border-radius:10px;background:linear-gradient(135deg,var(--color-accent),var(--color-accent-2));display:grid;place-items:center;margin-bottom:10px}
       .card__icon svg{width:20px;height:20px;fill:#fff}
-
       .howto{display:grid;grid-template-columns:1fr;gap:10px}
       .howto ol{margin:0 0 8px 18px}
       .gallery{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px}
       .gallery img{width:100%;height:auto;border-radius:12px;border:1px solid rgba(255,255,255,.06)}
-
       details{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:12px;padding:12px}
       details+details{margin-top:10px}
       summary{cursor:pointer;font-weight:600}
       summary::-webkit-details-marker{display:none}
-
       footer{border-top:1px solid rgba(255,255,255,.08);padding:24px 0;color:var(--color-muted);font-size:14px}
       .legal{display:flex;flex-wrap:wrap;gap:14px}
-
-      @media (min-width:900px){
-        .hero{grid-template-columns:1.1fr .9fr;padding:72px 0}
-      }
+      @media (min-width:900px){.hero{grid-template-columns:1.1fr .9fr;padding:72px 0}}
     </style>
 
-    <!-- Stylesheet -->
     <link rel="preload" href="assets/css/style.css" as="style">
     <link rel="stylesheet" href="assets/css/style.css">
-
-    <!-- JSON-LD: MobileApplication (placeholders for offers/ratings) -->
-    <script type="application/ld+json">
-      {
-        "@context": "https://schema.org",
-        "@type": "MobileApplication",
-        "name": "UniOn",
-        "operatingSystem": "iOS, Android",
-        "applicationCategory": "https://schema.org/SocialNetworkingApplication",
-        "image": "../assets/images/splash-icon.png",
-        "offers": {
-          "@type": "Offer",
-          "price": "0",
-          "priceCurrency": "EUR"
-        },
-        "aggregateRating": {
-          "@type": "AggregateRating",
-          "ratingValue": "4.8",
-          "ratingCount": "256"
-        }
-      }
-    </script>
   </head>
   <body>
-    <a class="skip-link" href="#content">Skip to content</a>
+    <a class="skip-link" href="#contenuto">Salta al contenuto</a>
     <header class="site-header" role="banner">
       <div class="container nav">
-        <a class="brand" href="index.html" aria-label="UniOn">
-          <img src="../assets/images/icon.png" alt="UniOn logo" width="32" height="32">
+        <a class="brand" href="index-it.html" aria-label="UniOn">
+          <img src="../assets/images/icon.png" alt="Logo UniOn" width="32" height="32">
           <span>UniOn</span>
         </a>
         <button class="menu-toggle" aria-expanded="false" aria-controls="primary-nav">
-          <span class="visually-hidden">Open menu</span>
+          <span class="visually-hidden">Apri menu</span>
           <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
         </button>
-        <nav id="primary-nav" class="nav__links" aria-label="Primary">
-          <a href="#features">Features</a>
-          <a href="#download">Download</a>
-          <a href="privacy.html">Privacy</a>
+        <nav id="primary-nav" class="nav__links" aria-label="Principale">
+          <a href="#caratteristiche">Caratteristiche</a>
+          <a href="#download">Scarica</a>
+          <a href="privacy-it.html">Privacy</a>
           <div class="nav__end">
             <div class="lang-dropdown">
               <button class="lang-button" aria-haspopup="menu" aria-expanded="false" aria-controls="lang-menu">
                 <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a10 10 0 100 20 10 10 0 000-20zm7.7 9h-3.4a12.6 12.6 0 01-1 4.3 8 8 0 004.4-4.3zM12 4a8 8 0 00-2.2 4h4.4A8 8 0 0012 4zm-4 6a12.6 12.6 0 011-4.3A8 8 0 004.6 10H8zm0 2H4.6a8 8 0 004.4 4.3 12.6 12.6 0 01-1-4.3zm2.2 0a10.7 10.7 0 00.9 3.8c.4 1 .9 1.9 1.9 1.9s1.5-.9 1.9-1.9a10.7 10.7 0 00.9-3.8 10.7 10.7 0 00-.9-3.8c-.4-1-.9-1.9-1.9-1.9s-1.5.9-1.9 1.9a10.7 10.7 0 00-.9 3.8zm2.2 6a8 8 0 002.2-4H10a8 8 0 002.2 4zm3.8-10a12.6 12.6 0 011-4.3A8 8 0 0019.4 10H16z"/></svg>
-                <span class="label">Language</span>
-                <span class="badge">EN</span>
+                <span class="label">Lingua</span>
+                <span class="badge">IT</span>
               </button>
               <div id="lang-menu" class="lang-menu" role="menu" hidden>
-                <button data-lang="en" role="menuitemradio" aria-checked="true">English</button>
-                <button data-lang="it" role="menuitemradio" aria-checked="false">Italiano</button>
+                <button data-lang="en" role="menuitemradio" aria-checked="false">English</button>
+                <button data-lang="it" role="menuitemradio" aria-checked="true">Italiano</button>
               </div>
             </div>
           </div>
@@ -157,115 +117,109 @@
       </div>
     </header>
 
-    <main id="content" class="container" role="main">
-      <!-- Hero -->
+    <main id="contenuto" class="container" role="main">
       <section class="hero" aria-labelledby="tit-hero">
         <div class="hero__copy">
-          <h1 id="tit-hero">Connect, discover and meet with UniOn</h1>
-          <p>The community for exchange students: find nearby events, make new connections, and get the most out of your time abroad.</p>
-          <div class="cta" role="group" aria-label="Download actions">
-            <a href="https://apps.apple.com/app/id0000000000" aria-label="Download on the App Store">
-              <img src="assets/icons/app-store.svg" alt="Download on the App Store" width="156" height="48" loading="eager">
+          <h1 id="tit-hero">Connetti, scopri e incontra con UniOn</h1>
+          <p>La community per studenti Erasmus: trova eventi vicino a te, crea nuove connessioni e vivi al massimo la tua esperienza all’estero.</p>
+          <div class="cta" role="group" aria-label="Azioni di download">
+            <a href="https://apps.apple.com/app/id0000000000" aria-label="Scarica su App Store">
+              <img src="assets/icons/app-store.svg" alt="Scarica su App Store" width="156" height="48" loading="eager">
             </a>
-            <a href="https://play.google.com/store/apps/details?id=com.union.connect" aria-label="Get it on Google Play">
-              <img src="assets/icons/google-play.svg" alt="Get it on Google Play" width="156" height="48" loading="eager">
+            <a href="https://play.google.com/store/apps/details?id=com.union.connect" aria-label="Disponibile su Google Play">
+              <img src="assets/icons/google-play.svg" alt="Disponibile su Google Play" width="156" height="48" loading="eager">
             </a>
           </div>
         </div>
         <div class="hero__media" aria-hidden="true">
-          <img class="phone" src="assets/img/mockup_app.png" alt="Phone mockup showing UniOn" width="360" height="720">
+          <img class="phone" src="assets/img/mockup_app.png" alt="Mockup telefono con UniOn" width="360" height="720">
         </div>
       </section>
 
-      <!-- Caratteristiche -->
-      <section class="section" id="features" aria-labelledby="tit-feat">
-        <h2 class="section__title" id="tit-feat">Why you'll love it</h2>
+      <section class="section" id="caratteristiche" aria-labelledby="tit-feat">
+        <h2 class="section__title" id="tit-feat">Perché ti piacerà</h2>
         <div class="features">
           <article class="card">
             <div class="card__icon" aria-hidden="true">
               <svg viewBox="0 0 24 24"><path d="M12 3l7 4v6c0 5-7 8-7 8s-7-3-7-8V7l7-4z"/></svg>
             </div>
-            <h3>Local community</h3>
-            <p>Discover nearby students and make new friends in a few taps.</p>
+            <h3>Community locale</h3>
+            <p>Scopri studenti vicini a te e crea nuove amicizie in pochi tap.</p>
           </article>
           <article class="card">
             <div class="card__icon" aria-hidden="true">
               <svg viewBox="0 0 24 24"><path d="M3 12l18-9-9 18-2-7-7-2z"/></svg>
             </div>
-            <h3>Events & experiences</h3>
-            <p>Find hangouts, parties and curated events to enjoy the city.</p>
+            <h3>Eventi ed esperienze</h3>
+            <p>Trova uscite, feste ed eventi consigliati per vivere la città.</p>
           </article>
           <article class="card">
             <div class="card__icon" aria-hidden="true">
               <svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 100 20 10 10 0 000-20zm1 5v6l5 3"/></svg>
             </div>
-            <h3>Smart notifications</h3>
-            <p>Stay on top of messages, invites and opportunities around you.</p>
+            <h3>Notifiche smart</h3>
+            <p>Resta aggiornato su messaggi, inviti e opportunità intorno a te.</p>
           </article>
           <article class="card">
             <div class="card__icon" aria-hidden="true">
               <svg viewBox="0 0 24 24"><path d="M4 7h16M4 12h8M4 17h16"/></svg>
             </div>
-            <h3>Polished profile</h3>
-            <p>Show your interests and languages to connect easier.</p>
+            <h3>Profilo curato</h3>
+            <p>Mostra interessi e lingue parlate per connetterti più facilmente.</p>
           </article>
         </div>
       </section>
 
-      <!-- Come scaricare -->
       <section class="section howto" id="download" aria-labelledby="tit-how">
-        <h2 class="section__title" id="tit-how">How to download</h2>
+        <h2 class="section__title" id="tit-how">Come scaricare</h2>
         <ol>
-          <li>Open your device store.</li>
-          <li>Search “UniOn”.</li>
-          <li>Tap Install and sign in with your account.</li>
+          <li>Apri lo store del tuo dispositivo.</li>
+          <li>Cerca “UniOn”.</li>
+          <li>Tocca Installa e accedi con il tuo account.</li>
         </ol>
-        <div class="cta" role="group" aria-label="Store links">
-          <a href="https://apps.apple.com/app/id0000000000"><img src="assets/icons/app-store.svg" alt="Download on the App Store" width="156" height="48" loading="lazy"></a>
-          <a href="https://play.google.com/store/apps/details?id=com.union.connect"><img src="assets/icons/google-play.svg" alt="Get it on Google Play" width="156" height="48" loading="lazy"></a>
+        <div class="cta" role="group" aria-label="Link agli store">
+          <a href="https://apps.apple.com/app/id0000000000"><img src="assets/icons/app-store.svg" alt="Scarica su App Store" width="156" height="48" loading="lazy"></a>
+          <a href="https://play.google.com/store/apps/details?id=com.union.connect"><img src="assets/icons/google-play.svg" alt="Disponibile su Google Play" width="156" height="48" loading="lazy"></a>
         </div>
       </section>
 
-      <!-- Galleria -->
       <section class="section" aria-labelledby="tit-gallery">
-        <h2 class="section__title" id="tit-gallery">Screenshots</h2>
+        <h2 class="section__title" id="tit-gallery">Screenshot</h2>
         <div class="gallery">
-          <img src="assets/img/screenshot-1.svg" alt="Screen – events feed" width="640" height="360" loading="lazy">
-          <img src="assets/img/screenshot-2.svg" alt="Screen – user profile" width="640" height="360" loading="lazy">
-          <img src="assets/img/screenshot-3.svg" alt="Screen – messages" width="640" height="360" loading="lazy">
+          <img src="assets/img/screenshot-1.svg" alt="Schermata – feed eventi" width="640" height="360" loading="lazy">
+          <img src="assets/img/screenshot-2.svg" alt="Schermata – profilo utente" width="640" height="360" loading="lazy">
+          <img src="assets/img/screenshot-3.svg" alt="Schermata – messaggi" width="640" height="360" loading="lazy">
         </div>
       </section>
 
-      <!-- FAQ -->
       <section class="section" aria-labelledby="tit-faq">
-        <h2 class="section__title" id="tit-faq">FAQ</h2>
+        <h2 class="section__title" id="tit-faq">Domande frequenti</h2>
         <details>
-          <summary>Is UniOn free?</summary>
-          <div>UniOn is free. We may offer optional premium features in the future.</div>
+          <summary>UniOn è gratuita?</summary>
+          <div>UniOn è gratuita. In futuro potremmo offrire funzionalità premium facoltative.</div>
         </details>
         <details>
-          <summary>Which devices are supported?</summary>
-          <div>iOS and Android. Store links are available above.</div>
+          <summary>Su quali dispositivi è disponibile?</summary>
+          <div>iOS e Android. Trovi i link agli store qui sopra.</div>
         </details>
         <details>
-          <summary>Can I report users or content?</summary>
-          <div>Yes. We use moderation systems and you can report from the profile.</div>
+          <summary>Posso segnalare utenti o contenuti?</summary>
+          <div>Sì. Usiamo sistemi di moderazione e puoi segnalare dal profilo.</div>
         </details>
         <details>
-          <summary>How do you protect my data?</summary>
-          <div>We apply security best practices. Check our privacy policy.</div>
+          <summary>Come proteggete i miei dati?</summary>
+          <div>Applichiamo best practice di sicurezza. Consulta la nostra privacy policy.</div>
         </details>
         <details>
-          <summary>Do I need location enabled?</summary>
-          <div>Recommended to discover nearby events; you can disable it anytime.</div>
+          <summary>Serve la posizione attiva?</summary>
+          <div>Consigliata per scoprire eventi nelle vicinanze; puoi disattivarla in ogni momento.</div>
         </details>
       </section>
 
-      <!-- Privacy & Contatti -->
       <section class="section" aria-labelledby="tit-legal">
-        <h2 class="section__title" id="tit-legal">Privacy &amp; Contact</h2>
+        <h2 class="section__title" id="tit-legal">Privacy &amp; Contatti</h2>
         <p>
-          <a href="privacy.html" rel="nofollow">Privacy Policy</a> ·
+          <a href="privacy-it.html" rel="nofollow">Privacy Policy</a> ·
           <a href="mailto:support@unionerasmus.com">support@unionerasmus.com</a>
         </p>
       </section>
@@ -276,15 +230,9 @@
         <span>© <span id="year"></span> UniOn. Tutti i diritti riservati.</span>
         <span>·</span>
         <span>Made with ♥</span>
-        <span>¶ú</span>
-        <a href="admin.html" rel="nofollow">Accesso moderazione</a>
       </div>
     </footer>
 
-    <!-- Analytics (disabilitato in dev) -->
-    <!--
-    <script defer data-domain="tuodominio.it" src="https://plausible.io/js/script.js"></script>
-    -->
-
     <script src="assets/js/main.js" defer></script>
+  </body>
   </html>

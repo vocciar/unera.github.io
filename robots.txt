@@ -1,0 +1,8 @@
+User-agent: *
+Allow: /
+
+# Blocca eventuali cartelle di amministrazione (se presenti)
+Disallow: /admin/
+Disallow: /private/
+
+Sitemap: https://www.unionerasmus.com/sitemap.xml
