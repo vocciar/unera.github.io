@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="640" height="360" viewBox="0 0 640 360" role="img" aria-label="Screenshot profilo utente">
+  <rect width="640" height="360" rx="12" fill="#0B1220"/>
+  <rect x="16" y="16" width="608" height="328" rx="10" fill="#0F172A" stroke="rgba(255,255,255,.06)"/>
+  <circle cx="120" cy="120" r="48" fill="#111827"/>
+  <rect x="200" y="92" width="180" height="14" rx="7" fill="rgba(255,255,255,.12)"/>
+  <rect x="200" y="116" width="140" height="10" rx="5" fill="rgba(255,255,255,.12)"/>
+  <rect x="36" y="176" width="568" height="140" rx="10" fill="#111827"/>
+</svg>
+
